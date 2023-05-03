@@ -15,7 +15,7 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId; /*a unique identifier for the user*/
+    private Long userId; /*a unique identifier for the user*/
     private String username; /*the user's username for logging in*/
     private String password; /*the user's password for logging in*/
     private String email; /*the user's email address for account verification and password recovery*/

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class FinancialTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long transactionId; /*a unique identifier for the transaction*/
+    private Long transactionId; /*a unique identifier for the transaction*/
     private LocalDateTime transactionDate; /*the date the transaction occurred*/
     private double transactionAmount; /*the amount of the transaction*/
     private String transactionDescription; /*a brief description of the transaction*/
