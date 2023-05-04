@@ -1,9 +1,13 @@
 package project.financemanagement.demo.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import project.financemanagement.demo.model.FinancialAccount;
 
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class FinancialAccountServiceImpl implements FinancialAccountService{
     @Override
     public List<FinancialAccount> findEveryAccount() {

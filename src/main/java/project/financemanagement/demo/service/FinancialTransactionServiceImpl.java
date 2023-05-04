@@ -1,9 +1,13 @@
 package project.financemanagement.demo.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import project.financemanagement.demo.model.FinancialTransaction;
 
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class FinancialTransactionServiceImpl implements FinancialTransactionService{
     @Override
     public List<FinancialTransaction> findEveryTransaction() {
