@@ -1,19 +1,21 @@
 package project.financemanagement.demo.service;
 
-import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project.financemanagement.demo.mapper.BudgetMapper;
-import project.financemanagement.demo.model.dto.BudgetRequest;
-import project.financemanagement.demo.model.entity.Budget;
+import project.financemanagement.demo.entity.Budget;
 import project.financemanagement.demo.repository.BudgetRepository;
 
 import java.util.List;
 
 @Service
-@Data
 public class BudgetServiceImpl implements BudgetService{
 
-    private BudgetRepository budgetRepository;
+    private final BudgetRepository budgetRepository;
+
+    @Autowired
+    public BudgetServiceImpl(BudgetRepository budgetRepository) {
+        this.budgetRepository = budgetRepository;
+    }
 
     @Override
     public List<Budget> getEveryBudget() {
@@ -26,14 +28,13 @@ public class BudgetServiceImpl implements BudgetService{
     }
 
     @Override
-    public Budget createBudget(BudgetRequest request) {
-        return this.budgetRepository.save(BudgetMapper.INSTANCE.toBudget(request));
+    public Budget createBudget(Budget budget) {
+        return this.budgetRepository.save(budget);
     }
 
     @Override
-    public Budget updateBudget(Budget budget) {
-        return this.budgetRepository.save(BudgetMapper.INSTANCE.update(
-                this.budgetRepository.getReferenceById(budget.getBudgetId()),budget));
+    public Budget updateBudget(Long id, Budget budget) {
+        return this.budgetRepository.save(budget);
     }
 
     @Override

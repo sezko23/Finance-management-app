@@ -1,19 +1,23 @@
 package project.financemanagement.demo.service;
 
-import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project.financemanagement.demo.mapper.AccountMapper;
-import project.financemanagement.demo.model.dto.AccountRequest;
-import project.financemanagement.demo.model.entity.Account;
+import project.financemanagement.demo.entity.Account;
 import project.financemanagement.demo.repository.AccountRepository;
 
 import java.util.List;
 
-@Data
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
+
+    @Autowired
+    public AccountServiceImpl(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
     @Override
     public List<Account> getEveryAccount() {
         return this.accountRepository.findAll();
@@ -28,14 +32,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account createAccount(AccountRequest request) {
-        return this.accountRepository.save(AccountMapper.INSTANCE.toAccount(request));
+    public Account createAccount(Account account) {
+        return this.accountRepository.save(account);
     }
 
     @Override
-    public Account updateAccount(Account account) {
-        return this.accountRepository.save(AccountMapper.INSTANCE.update(
-                this.accountRepository.getReferenceById(account.getAccountId()),account));
+    public Account updateAccount(Long id, Account account) {
+        return this.accountRepository.save(account);
     }
 
     @Override

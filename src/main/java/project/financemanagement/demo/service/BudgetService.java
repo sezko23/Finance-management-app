@@ -1,10 +1,8 @@
 package project.financemanagement.demo.service;
 
-import project.financemanagement.demo.model.dto.BudgetRequest;
-import project.financemanagement.demo.model.entity.Budget;
+import project.financemanagement.demo.entity.Budget;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BudgetService{
 
@@ -12,9 +10,9 @@ public interface BudgetService{
 
     Budget getBudget(Long id);
 
-    Budget createBudget(BudgetRequest request);
+    Budget createBudget(Budget budget);
 
-    Budget updateBudget(Budget budget);
+    Budget updateBudget(Long id, Budget budget);
 
     void deleteBudget(Long id);
 }

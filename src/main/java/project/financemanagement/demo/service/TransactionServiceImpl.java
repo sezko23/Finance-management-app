@@ -1,19 +1,22 @@
 package project.financemanagement.demo.service;
 
-import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project.financemanagement.demo.mapper.TransactionMapper;
-import project.financemanagement.demo.model.dto.TransactionRequest;
-import project.financemanagement.demo.model.entity.Transaction;
+import project.financemanagement.demo.entity.Transaction;
 import project.financemanagement.demo.repository.TransactionRepository;
 
 import java.util.List;
 
-@Data
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
-    private TransactionRepository transactionRepository;
+    private final TransactionRepository transactionRepository;
+
+    @Autowired
+    public TransactionServiceImpl(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
     @Override
     public List<Transaction> getEveryTransaction() {
         return this.transactionRepository.findAll();
@@ -25,14 +28,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public Transaction createTransaction(TransactionRequest request) {
-        return this.transactionRepository.save(TransactionMapper.INSTANCE.toTransaction(request));
+    public Transaction createTransaction(Transaction transaction) {
+        return this.transactionRepository.save(transaction);
     }
 
     @Override
-    public Transaction updateTransaction(Transaction transaction) {
-        return this.transactionRepository.save(TransactionMapper.INSTANCE.update(
-                this.transactionRepository.getReferenceById(transaction.getTransactionId()), transaction));
+    public Transaction updateTransaction(Long id, Transaction transaction) {
+        return this.transactionRepository.save(transaction);
     }
 
     @Override

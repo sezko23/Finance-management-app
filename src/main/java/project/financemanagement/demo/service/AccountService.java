@@ -1,7 +1,6 @@
 package project.financemanagement.demo.service;
 
-import project.financemanagement.demo.model.dto.AccountRequest;
-import project.financemanagement.demo.model.entity.Account;
+import project.financemanagement.demo.entity.Account;
 
 import java.util.List;
 
@@ -10,9 +9,9 @@ public interface AccountService {
 
     Account getAccount(Long id);
 
-    Account createAccount(AccountRequest request);
+    Account createAccount(Account account);
 
-    Account updateAccount(Account account);
+    Account updateAccount(Long id, Account account);
 
     void deleteAccount(Long id);
 }
