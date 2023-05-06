@@ -1,7 +1,6 @@
 package project.financemanagement.demo.service;
 
-import project.financemanagement.demo.model.dto.TransactionRequest;
-import project.financemanagement.demo.model.entity.Transaction;
+import project.financemanagement.demo.entity.Transaction;
 
 import java.util.List;
 
@@ -10,9 +9,9 @@ public interface TransactionService {
 
     Transaction getTransaction(Long id);
 
-    Transaction createTransaction(TransactionRequest request);
+    Transaction createTransaction(Transaction transaction);
 
-    Transaction updateTransaction(Transaction transaction);
+    Transaction updateTransaction(Long id, Transaction transaction);
 
     void deleteTransaction(Long id);
 }

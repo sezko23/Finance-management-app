@@ -1,24 +1,24 @@
 package project.financemanagement.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
-import project.financemanagement.demo.model.entity.Transaction;
+import project.financemanagement.demo.entity.Transaction;
 
 import java.util.List;
 
 @RequestMapping("/transaction")
 public interface TransactionController {
     @GetMapping
-    List<Transaction> findEveryTransaction();
+    List<Transaction> getEveryTransaction();
 
     @GetMapping("/{id}")
-    Transaction getTransaction(@PathVariable String id);
+    Transaction getTransaction(@PathVariable Long id);
 
     @PostMapping
-    Transaction addTransaction(@RequestBody Transaction transaction);
+    Transaction createTransaction(@RequestBody Transaction transaction);
 
     @PutMapping("/{id}")
-    Transaction updateTransaction(@PathVariable String id, @RequestBody Transaction transaction);
+    Transaction updateTransaction(@PathVariable Long id, @RequestBody Transaction transaction);
 
     @DeleteMapping("/{id}")
-    void deleteTransaction(@PathVariable String id);
+    void deleteTransaction(@PathVariable Long id);
 }

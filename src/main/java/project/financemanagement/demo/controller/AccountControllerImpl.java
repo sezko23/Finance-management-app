@@ -1,14 +1,12 @@
 package project.financemanagement.demo.controller;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import project.financemanagement.demo.model.entity.Account;
+import project.financemanagement.demo.entity.Account;
 import project.financemanagement.demo.service.AccountService;
 
 import java.util.List;
 
-@Data
 @RestController
 public class AccountControllerImpl implements AccountController {
     private final AccountService accountService; // Constructor injection
@@ -19,27 +17,27 @@ public class AccountControllerImpl implements AccountController {
     }
 
     @Override
-    public List<Account> findEveryAccount() {
-        return null;
+    public List<Account> getEveryAccount() {
+        return this.accountService.getEveryAccount();
     }
 
     @Override
-    public Account getAccount(String id) {
-        return null;
+    public Account getAccount(Long id) {
+        return this.accountService.getAccount(id);
     }
 
     @Override
-    public Account addAccount(Account account) {
-        return null;
+    public Account createAccount(Account account) {
+        return this.accountService.createAccount(account);
     }
 
     @Override
-    public Account updateAccount(String id, Account account) {
-        return null;
+    public Account updateAccount(Long id, Account account) {
+        return this.accountService.updateAccount(id, account);
     }
 
     @Override
-    public void deleteAccount(String id) {
-
+    public void deleteAccount(Long id) {
+        this.accountService.deleteAccount(id);
     }
 }
