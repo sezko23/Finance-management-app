@@ -1,17 +1,18 @@
-package project.financemanagement.demo.model;
+package project.financemanagement.demo.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
+@Data
 @Entity
-public class FinancialTransaction {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transactionId; /*a unique identifier for the transaction*/
@@ -24,5 +25,5 @@ public class FinancialTransaction {
     @ManyToOne
     @JoinColumn(name = "account_id")
     @ToString.Exclude
-    private FinancialAccount financialAccount;
+    private Account account;
 }

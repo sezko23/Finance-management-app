@@ -1,17 +1,18 @@
-package project.financemanagement.demo.model;
+package project.financemanagement.demo.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString
+//@AllArgsConstructor
+//@NoArgsConstructor
+@Data
 @Entity
-public class FinancialAccount {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long accountId; /*a unique identifier for the account*/
@@ -21,5 +22,5 @@ public class FinancialAccount {
 
     @OneToMany(mappedBy = "financialAccount", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<FinancialTransaction> accountTransactions; /*a list of transactions associated with the account*/
+    private List<Transaction> accountTransactions; /*a list of transactions associated with the account*/
 }

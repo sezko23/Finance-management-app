@@ -1,18 +1,20 @@
 package project.financemanagement.demo.service;
 
-import project.financemanagement.demo.model.Budget;
+import project.financemanagement.demo.model.dto.BudgetRequest;
+import project.financemanagement.demo.model.entity.Budget;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BudgetService{
 
-    public List<Budget> findEveryBudget();
+    List<Budget> getEveryBudget();
 
-    public Budget getBudget(String id);
+    Budget getBudget(Long id);
 
-    public Budget addBudget(Budget budget);
+    Budget createBudget(BudgetRequest request);
 
-    public Budget updateBudget(String id, Budget budget);
+    Budget updateBudget(Budget budget);
 
-    public void deleteBudget(String id);
+    void deleteBudget(Long id);
 }
