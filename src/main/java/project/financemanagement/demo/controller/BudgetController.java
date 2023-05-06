@@ -1,7 +1,7 @@
 package project.financemanagement.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
-import project.financemanagement.demo.model.Budget;
+import project.financemanagement.demo.model.entity.Budget;
 
 import java.util.List;
 

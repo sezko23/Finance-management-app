@@ -1,20 +1,16 @@
 package project.financemanagement.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Data;
 import org.springframework.web.bind.annotation.RestController;
-import project.financemanagement.demo.model.Budget;
+import project.financemanagement.demo.model.entity.Budget;
 import project.financemanagement.demo.service.BudgetService;
 
 import java.util.List;
 
+@Data
 @RestController
 public class BudgetControllerImpl implements BudgetController{
     private final BudgetService budgetService; // Constructor injection
-
-    @Autowired
-    public BudgetControllerImpl(BudgetService budgetService) {
-        this.budgetService = budgetService;
-    }
 
     @Override
     public List<Budget> findEveryBudget() {
