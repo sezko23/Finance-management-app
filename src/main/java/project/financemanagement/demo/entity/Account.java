@@ -20,7 +20,7 @@ public class Account {
 
 
     public String getAccountName() {
-        return accountName;
+        return this.accountName;
     }
 
     public void setAccountName(String accountName) {
@@ -28,7 +28,7 @@ public class Account {
     }
 
     public String getAccountType() {
-        return accountType;
+        return this.accountType;
     }
 
     public void setAccountType(String accountType) {
@@ -36,7 +36,7 @@ public class Account {
     }
 
     public double getAccountBalance() {
-        return accountBalance;
+        return this.accountBalance;
     }
 
     public void setAccountBalance(double accountBalance) {
@@ -44,7 +44,7 @@ public class Account {
     }
 
     public List<Transaction> getAccountTransactions() {
-        return accountTransactions;
+        return this.accountTransactions;
     }
 
     public void setAccountTransactions(List<Transaction> accountTransactions) {

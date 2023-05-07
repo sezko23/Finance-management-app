@@ -39,7 +39,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account updateAccount(Long id, Account updatedAccount) {
-        Account account = accountRepository.findById(id)
+        Account account = this.accountRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Account not found with id: " + id));
 
         account.setAccountName(updatedAccount.getAccountName());
@@ -47,12 +47,12 @@ public class AccountServiceImpl implements AccountService {
         account.setAccountBalance(updatedAccount.getAccountBalance());
         account.setAccountTransactions(updatedAccount.getAccountTransactions());
 
-        return accountRepository.save(account);
+        return this.accountRepository.save(account);
     }
 
     @Override
     public void deleteAccount(Long id) {
-        accountRepository.findById(id)
+        this.accountRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Account not found with id: " + id));
         this.accountRepository.deleteById(id);
     }

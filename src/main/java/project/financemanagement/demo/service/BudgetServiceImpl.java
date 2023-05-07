@@ -39,7 +39,7 @@ public class BudgetServiceImpl implements BudgetService{
 
     @Override
     public Budget updateBudget(Long id, Budget updatedBudget) {
-        Budget budget = budgetRepository.findById(id)
+        Budget budget = this.budgetRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Budget not found with id: " + id));
 
         budget.setBudgetCategory(updatedBudget.getBudgetCategory());
@@ -49,12 +49,12 @@ public class BudgetServiceImpl implements BudgetService{
         budget.setGoal(updatedBudget.getGoal());
         budget.setProgress(updatedBudget.getProgress());
 
-        return budgetRepository.save(budget);
+        return this.budgetRepository.save(budget);
     }
 
     @Override
     public void deleteBudget(Long id) {
-        budgetRepository.findById(id)
+        this.budgetRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Budget not found with id: " + id));
         this.budgetRepository.deleteById(id);
     }

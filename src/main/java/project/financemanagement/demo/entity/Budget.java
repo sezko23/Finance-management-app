@@ -23,7 +23,7 @@ public class Budget {
 
 
     public String getBudgetCategory() {
-        return budgetCategory;
+        return this.budgetCategory;
     }
 
     public void setBudgetCategory(String budgetCategory) {
@@ -31,7 +31,7 @@ public class Budget {
     }
 
     public double getBudgetAmount() {
-        return budgetAmount;
+        return this.budgetAmount;
     }
 
     public void setBudgetAmount(double budgetAmount) {
@@ -39,7 +39,7 @@ public class Budget {
     }
 
     public LocalDateTime getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public void setStartDate(LocalDateTime startDate) {
@@ -47,7 +47,7 @@ public class Budget {
     }
 
     public LocalDateTime getEndDate() {
-        return endDate;
+        return this.endDate;
     }
 
     public void setEndDate(LocalDateTime endDate) {
@@ -55,7 +55,7 @@ public class Budget {
     }
 
     public double getGoal() {
-        return goal;
+        return this.goal;
     }
 
     public void setGoal(double goal) {
@@ -63,7 +63,7 @@ public class Budget {
     }
 
     public double getProgress() {
-        return progress;
+        return this.progress;
     }
 
     public void setProgress(double progress) {
