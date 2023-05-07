@@ -2,7 +2,9 @@ package project.financemanagement.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.financemanagement.demo.entity.Account;
 import project.financemanagement.demo.entity.Budget;
+import project.financemanagement.demo.exception.EntityNotFoundException;
 import project.financemanagement.demo.repository.BudgetRepository;
 
 import java.util.List;
@@ -19,12 +21,15 @@ public class BudgetServiceImpl implements BudgetService{
 
     @Override
     public List<Budget> getEveryBudget() {
-        return this.budgetRepository.findAll();
+        return this.budgetRepository.findAllByOrderByBudgetIdAsc();
     }
 
     @Override
     public Budget getBudget(Long id) {
-        return this.budgetRepository.getReferenceById(id);
+        if (this.budgetRepository.findById(id).isPresent()) {
+            return this.budgetRepository.getReferenceById(id);
+        }
+        throw new EntityNotFoundException("Budget not found with id: " + id);
     }
 
     @Override
@@ -33,12 +38,24 @@ public class BudgetServiceImpl implements BudgetService{
     }
 
     @Override
-    public Budget updateBudget(Long id, Budget budget) {
-        return this.budgetRepository.save(budget);
+    public Budget updateBudget(Long id, Budget updatedBudget) {
+        Budget budget = budgetRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Budget not found with id: " + id));
+
+        budget.setBudgetCategory(updatedBudget.getBudgetCategory());
+        budget.setBudgetAmount(updatedBudget.getBudgetAmount());
+        budget.setStartDate(updatedBudget.getStartDate());
+        budget.setEndDate(updatedBudget.getEndDate());
+        budget.setGoal(updatedBudget.getGoal());
+        budget.setProgress(updatedBudget.getProgress());
+
+        return budgetRepository.save(budget);
     }
 
     @Override
     public void deleteBudget(Long id) {
+        budgetRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Budget not found with id: " + id));
         this.budgetRepository.deleteById(id);
     }
 }

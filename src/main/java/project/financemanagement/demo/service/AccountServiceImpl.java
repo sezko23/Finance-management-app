@@ -3,6 +3,7 @@ package project.financemanagement.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.financemanagement.demo.entity.Account;
+import project.financemanagement.demo.exception.EntityNotFoundException;
 import project.financemanagement.demo.repository.AccountRepository;
 
 import java.util.List;
@@ -20,15 +21,15 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> getEveryAccount() {
-        return this.accountRepository.findAll();
+        return this.accountRepository.findAllByOrderByAccountIdAsc();
     }
 
     @Override
     public Account getAccount(Long id) {
-        if(this.accountRepository.findById(id).isPresent()){
+        if (this.accountRepository.findById(id).isPresent()) {
             return this.accountRepository.getReferenceById(id);
         }
-        throw new RuntimeException();
+        throw new EntityNotFoundException("Account not found with id: " + id);
     }
 
     @Override
@@ -37,12 +38,22 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account updateAccount(Long id, Account account) {
-        return this.accountRepository.save(account);
+    public Account updateAccount(Long id, Account updatedAccount) {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Account not found with id: " + id));
+
+        account.setAccountName(updatedAccount.getAccountName());
+        account.setAccountType(updatedAccount.getAccountType());
+        account.setAccountBalance(updatedAccount.getAccountBalance());
+        account.setAccountTransactions(updatedAccount.getAccountTransactions());
+
+        return accountRepository.save(account);
     }
 
     @Override
     public void deleteAccount(Long id) {
+        accountRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Account not found with id: " + id));
         this.accountRepository.deleteById(id);
     }
 }

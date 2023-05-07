@@ -12,7 +12,7 @@ public interface BudgetService{
 
     Budget createBudget(Budget budget);
 
-    Budget updateBudget(Long id, Budget budget);
+    Budget updateBudget(Long id, Budget updatedBudget);
 
     void deleteBudget(Long id);
 }
