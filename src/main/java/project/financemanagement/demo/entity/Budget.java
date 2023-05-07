@@ -19,13 +19,6 @@ public class Budget {
     private double goal; /*a financial goal associated with the budget*/
     private double progress; /*the current progress towards the goal*/
 
-    public Long getBudgetId() {
-        return budgetId;
-    }
-
-    public void setBudgetId(Long budgetId) {
-        this.budgetId = budgetId;
-    }
 
     public String getBudgetCategory() {
         return budgetCategory;

@@ -18,13 +18,6 @@ public class Account {
     @ToString.Exclude
     private List<Transaction> accountTransactions; /*a list of transactions associated with the account*/
 
-    public Long getAccountId(){
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
 
     public String getAccountName() {
         return accountName;
