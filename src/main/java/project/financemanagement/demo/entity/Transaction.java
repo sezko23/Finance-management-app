@@ -21,13 +21,6 @@ public class Transaction {
     @ToString.Exclude
     private Account account;
 
-    public Long getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
 
     public LocalDateTime getTransactionDate() {
         return transactionDate;
