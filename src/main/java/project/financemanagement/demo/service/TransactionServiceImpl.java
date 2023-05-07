@@ -8,7 +8,9 @@ import project.financemanagement.demo.enumeration.TransactionCategories;
 import project.financemanagement.demo.exception.EntityNotFoundException;
 import project.financemanagement.demo.repository.TransactionRepository;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -26,6 +28,37 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<Transaction> getEveryTransactionByDate(LocalDate date) {
+        List<Transaction> transactionList = this.transactionRepository.findAll();
+        return transactionList.stream()
+                .filter(transaction -> transaction.getTransactionDate().toLocalDate().isEqual(date))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Transaction> sortEveryTransactionByDate() {
+        return this.transactionRepository.findAllByOrderByTransactionDateAsc();
+    }
+
+    @Override
+    public List<Transaction> getEveryTransactionByCategory(String category) {
+        List<Transaction> transactionList = this.transactionRepository.findAll();
+        return transactionList.stream()
+                .filter(transaction -> transaction.getTransactionCategory().toString().equals(category))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Transaction> sortEveryTransactionByAmountAscending() {
+        return this.transactionRepository.findAllByOrderByTransactionAmountAsc();
+    }
+
+    @Override
+    public List<Transaction> sortEveryTransactionByAmountDescending() {
+        return this.transactionRepository.findAllByOrderByTransactionAmountDesc();
+    }
+
+    @Override
     public Transaction getTransaction(Long id) {
         if (this.transactionRepository.findById(id).isPresent()) {
             return this.transactionRepository.getReferenceById(id);
@@ -40,7 +73,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction updateTransaction(Long id, Transaction updatedTransaction) {
-        Transaction transaction = transactionRepository.findById(id)
+        Transaction transaction = this.transactionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Transaction not found with id: " + id));
 
         transaction.setTransactionDate(updatedTransaction.getTransactionDate());
@@ -49,12 +82,12 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setTransactionCategory(updatedTransaction.getTransactionCategory());
         transaction.setTransactionNotes(updatedTransaction.getTransactionNotes());
 
-        return transactionRepository.save(transaction);
+        return this.transactionRepository.save(transaction);
     }
 
     @Override
     public void deleteTransaction(Long id) {
-        transactionRepository.findById(id)
+        this.transactionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Transaction not found with id: " + id));
         this.transactionRepository.deleteById(id);
     }

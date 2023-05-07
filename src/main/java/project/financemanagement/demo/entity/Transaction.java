@@ -27,7 +27,7 @@ public class Transaction {
 
 
     public LocalDateTime getTransactionDate() {
-        return transactionDate;
+        return this.transactionDate;
     }
 
     public void setTransactionDate(LocalDateTime transactionDate) {
@@ -35,7 +35,7 @@ public class Transaction {
     }
 
     public double getTransactionAmount() {
-        return transactionAmount;
+        return this.transactionAmount;
     }
 
     public void setTransactionAmount(double transactionAmount) {
@@ -43,7 +43,7 @@ public class Transaction {
     }
 
     public String getTransactionDescription() {
-        return transactionDescription;
+        return this.transactionDescription;
     }
 
     public void setTransactionDescription(String transactionDescription) {
@@ -51,7 +51,7 @@ public class Transaction {
     }
 
     public TransactionCategories getTransactionCategory() {
-        return transactionCategory;
+        return this.transactionCategory;
     }
 
     public void setTransactionCategory(TransactionCategories transactionCategory) {
@@ -59,7 +59,7 @@ public class Transaction {
     }
 
     public String getTransactionNotes() {
-        return transactionNotes;
+        return this.transactionNotes;
     }
 
     public void setTransactionNotes(String transactionNotes) {
@@ -67,7 +67,7 @@ public class Transaction {
     }
 
     public Account getAccount() {
-        return account;
+        return this.account;
     }
 
     public void setAccount(Account account) {
