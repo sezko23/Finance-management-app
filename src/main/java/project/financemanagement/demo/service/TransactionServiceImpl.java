@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.financemanagement.demo.entity.Budget;
 import project.financemanagement.demo.entity.Transaction;
+import project.financemanagement.demo.enumeration.TransactionCategories;
 import project.financemanagement.demo.exception.EntityNotFoundException;
 import project.financemanagement.demo.repository.TransactionRepository;
 
