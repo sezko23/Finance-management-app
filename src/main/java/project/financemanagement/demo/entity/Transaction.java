@@ -1,7 +1,9 @@
 package project.financemanagement.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import project.financemanagement.demo.enumeration.TransactionCategories;
 
 import java.time.LocalDateTime;
 
@@ -10,10 +12,12 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transactionId; /*a unique identifier for the transaction*/
-    private LocalDateTime transactionDate; /*the date the transaction occurred*/
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEEE dd.MMM.yyyy")
+    private LocalDateTime transactionDate = LocalDateTime.now(); /*the date the transaction occurred*/
     private double transactionAmount; /*the amount of the transaction*/
     private String transactionDescription; /*a brief description of the transaction*/
-    private String transactionCategory;  /*the category the transaction falls under (e.g. rent, groceries, entertainment)*/
+    @Enumerated(EnumType.STRING)
+    private TransactionCategories transactionCategory;  /*the category the transaction falls under (e.g. rent, groceries, entertainment)*/
     private String transactionNotes; /*any additional notes about the transaction*/
 
     @ManyToOne
@@ -46,11 +50,11 @@ public class Transaction {
         this.transactionDescription = transactionDescription;
     }
 
-    public String getTransactionCategory() {
+    public TransactionCategories getTransactionCategory() {
         return transactionCategory;
     }
 
-    public void setTransactionCategory(String transactionCategory) {
+    public void setTransactionCategory(TransactionCategories transactionCategory) {
         this.transactionCategory = transactionCategory;
     }
 

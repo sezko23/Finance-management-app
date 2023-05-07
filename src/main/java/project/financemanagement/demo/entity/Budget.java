@@ -1,5 +1,6 @@
 package project.financemanagement.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,8 @@ public class Budget {
     private Long budgetId; /*a unique identifier for the budget*/
     private String budgetCategory; /*the category the budget applies to (e.g. rent, groceries, entertainment)*/
     private double budgetAmount; /*the budgeted amount for the category*/
-    private LocalDateTime startDate;  /*the start date of the budget period*/
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "EEEE dd.MMM.yyyy")
+    private LocalDateTime startDate = LocalDateTime.now();  /*the start date of the budget period*/
     private LocalDateTime endDate;  /*the end date of the budget period*/
     private double goal; /*a financial goal associated with the budget*/
     private double progress; /*the current progress towards the goal*/
